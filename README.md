@@ -7,6 +7,22 @@ Pug's CLI interface
 [![NPM version](https://img.shields.io/npm/v/pug-cli.svg)](https://www.npmjs.org/package/pug-cli)
 [![Coverage Status](https://img.shields.io/codecov/c/github/pugjs/pug-cli.svg)](https://codecov.io/gh/pugjs/pug-cli)
 
+## Edit
+下記の理由により、pug-cliを forkしてカスタマイズ。
+
+- 現在、[npm](https://www.npmjs.com/package/pug-cli)からインストールできる、[pug-cli 1.0.0-alpha6](https://www.npmjs.com/package/pug-cli)は、  
+パーシャル指定（ファイル先頭に_をつける）に対応していない。
+- [puc-cli/master](https://github.com/pugjs/pug-cli/tree/master)は対応済みだが、npmに反映していない模様
+
+- ファイルの先頭に _をつけた.pugファイルのみを除外したい。  
+`npm-cli/master`はディレクトリ名の先頭に_が入っている場合、  
+ディレクトリ内の.pugをコンパイル対象外にするようになっている。
+
+>[参考サイト]  
+>https://qiita.com/soarflat/items/48cec8fb19252a3fc4ad
+>https://qiita.com/TakashiShibusawa/items/2e15ab05d61c3f8fd33a
+
+
 ## Usage
 
 ```
