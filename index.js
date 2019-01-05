@@ -245,9 +245,15 @@ function renderFile(path, rootPath) {
   var isPug = /\.(?:pug|jade)$/;
   var isIgnored = /([\/\\]_)|(^_)/;
 
+  // pug-cliの1.0.0-alpha6から、
+  // ファイルやディレクトリの先頭に_をつけることでコンパイル対象外とできる。
+  // これをファイルのみに適用し、ディレクトリは除外したいため下記の処理を追加する
+  var pathArray = path.split('/');
+  var fileName = pathArray[pathArray.length - 1];
+
   var stat = fs.lstatSync(path);
-  // Found pug file
-  if (stat.isFile() && isPug.test(path) && !isIgnored.test(path)) {
+  // Found pug file（ignoreの対象をファイルのみに設定）
+  if (stat.isFile() && isPug.test(path) && !isIgnored.test(fileName)) {
     // Try to watch the file if needed. watchFile takes care of duplicates.
     if (program.watch) watchFile(path, null, rootPath);
     if (program.nameAfterFile) {
